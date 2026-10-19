@@ -1,0 +1,61 @@
+/* Fall-short section */
+.fallshort-section{ background: var(--bg, #f1f5f9); padding: 64px 20px; color: var(--text-main); }
+.fallshort-frame{ max-width:1200px; margin:0 auto; padding:0 20px; }
+.fallshort-header{ text-align:center; margin-bottom:34px; }
+.fs-tag{ display:inline-block; background:#eef2ff; color:var(--hero-accent); padding:8px 14px; border-radius:20px; font-weight:600; margin-bottom:12px; }
+.fs-title{ font-family:var(--font-display); font-size: clamp(28px,4.5vw,44px); font-weight:800; margin:0; color:var(--text-main); }
+.fs-title span{ color:var(--hero-accent); }
+.fs-sub{ color:var(--text-muted); max-width:820px; margin:12px auto 0; line-height:1.7; font-size:16px; }
+.fs-divider{ width:60px; height:4px; background: linear-gradient(90deg,var(--hero-accent),var(--hero-accent-2)); margin:18px auto 0; border-radius:6px; }
+
+/* grid */
+.fallshort-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:28px; margin-top:28px; align-items:stretch; }
+
+/* card base */
+.fallshort-card{
+  position:relative;
+  background: var(--card-bg, #fff);
+  border-radius: var(--card-radius, 18px);
+  padding:26px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+  border: 1px solid rgba(15,23,42,0.03);
+  overflow:visible;
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms;
+  display:flex;
+  align-items:flex-start;
+}
+.fallshort-card:hover{ transform: translateY(-8px); box-shadow: 0 30px 60px rgba(2,6,23,0.12); }
+
+/* top accent line (red for first 3, blue for uni) */
+.fs-top-accent{ position:absolute; left:14px; right:14px; top:10px; height:6px; border-radius:12px; transform-origin:left center; transform:scaleX(1); z-index:4; }
+.fs-accent-red{ background: linear-gradient(90deg, rgba(239,68,68,0.95), rgba(249,115,115,0.9)); }
+.fs-accent-blue{ background: linear-gradient(90deg, var(--hero-accent), var(--hero-accent-2)); }
+
+/* card content */
+.fs-card-body{ width:100%; margin-top:8px; }
+.fs-card-title{ font-weight:700; color:var(--text-main); font-size:16px; margin-bottom:6px; }
+.fs-card-sub{ color:var(--text-muted); font-size:13px; margin-bottom:12px; }
+.fs-card-text{ color:var(--text-muted); line-height:1.7; margin:0; }
+
+/* Uni card style: outlined + slightly different background */
+.fallshort-uni{
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), var(--card-bg));
+  border: 1px solid rgba(37,99,235,0.12);
+  box-shadow: 0 10px 24px rgba(37,99,235,0.06);
+}
+.fs-uni-icon{ width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:10px; background: rgba(96,165,250,0.08); color:var(--hero-accent); margin-bottom:8px; }
+
+/* Responsive */
+@media (max-width:1100px){ .fallshort-grid{ grid-template-columns: repeat(2,1fr); gap:22px; } }
+@media (max-width:700px){
+  .fallshort-grid{ grid-template-columns: 1fr; gap:16px; }
+  .fallshort-card{ padding:18px; border-radius:14px; }
+  .fs-top-accent{ left:12px; right:12px; top:8px; height:5px; }
+}
+
+/* Optional reveal: small fade+slide (add 'revealed' to .fallshort-grid via JS) */
+.fallshort-grid .fallshort-card{ opacity:0; transform: translateY(16px) scale(.997); transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 360ms; }
+.fallshort-grid.revealed .fallshort-card{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  .fallshort-grid .fallshort-card, .fallshort-grid.revealed .fallshort-card{ transition:none; transform:none; opacity:1; }
+}

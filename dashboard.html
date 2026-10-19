@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+
+
+  <script>
+    function logout() {
+      sessionStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("loggedInName");
+      window.location.href = "index-Harshitha.html";
+    }
+
+    const loggedIn = sessionStorage.getItem("loggedInUser");
+    if (!loggedIn) {
+      window.location.href = "index-Harshitha.html";
+    }
+  </script>
+
+
+  <div class="dashboard-header">
+    <h1>Unimonkeys Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="dashboard-container">
+
+  <!-- Welcome -->
+  <div class="welcome-card">
+    <h2 id="welcomeText"></h2>
+    <p>Class: 8</p>
+  </div>
+
+  <!-- Clubs -->
+  <h2>Your Enrolled Clubs</h2>
+  <div id="dynamicClubs" class="clubs-grid"></div>
+
+  <!-- Progress -->
+  <h2 style="margin-top:40px;">Your Progress</h2>
+  <div id="progressSection"></div>
+
+</div>
+
+
+<script>
+function loadStudentClubs() {
+
+  const container = document.getElementById("dynamicClubs");
+  const progressContainer = document.getElementById("progressSection");
+
+  let clubs = JSON.parse(localStorage.getItem("clubs")) || [];
+
+  container.innerHTML = "";
+  progressContainer.innerHTML = "";
+
+  if (clubs.length === 0) {
+    container.innerHTML = `
+      <div class="empty-card">
+        <h3>No Clubs Enrolled Yet 🚀</h3>
+        <p>Contact admin to get enrolled in clubs.</p>
+      </div>
+    `;
+    return;
+  }
+
+  let total = 0;
+  clubs.forEach(club => {
+    total += club.progress;
+    container.innerHTML += `
+      <div class="club-card">
+        <h3>${club.name}</h3>
+        <button class="access-btn">Access</button>
+      </div>
+    `;
+    progressContainer.innerHTML += `
+      <p>${club.name} Progress: ${club.progress}%</p>
+      <div style="background:rgba(255,255,255,0.1); height:8px; border-radius:5px;">
+        <div style="width:${club.progress}%; background:#ff7a00; height:8px; border-radius:5px;"></div>
+      </div>
+      <br>
+    `;
+  });
+
+  // ✅ Calculate Total Progress
+  let overall = Math.round(total / clubs.length);
+
+  progressContainer.innerHTML += `
+    <hr style="margin:20px 0;">
+    <h3>Total Progress: ${overall}%</h3>
+    <div style="background:rgba(255,255,255,0.1); height:10px; border-radius:5px;">
+      <div style="width:${overall}%; background:#00ffcc; height:10px; border-radius:5px;"></div>
+    </div>
+  `;
+}
+
+loadStudentClubs();
+</script>
+
+
+
+<script>
+const savedName = sessionStorage.getItem("loggedInName") || localStorage.getItem("userName");
+const savedEmail = sessionStorage.getItem("loggedInUser") || localStorage.getItem("userEmail");
+
+if (savedName) {
+  document.getElementById("welcomeText").innerText =
+    "Welcome, " + savedName + " 👋";
+}
+else if (savedEmail) {
+  const name = savedEmail.split("@")[0];
+  const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+
+  document.getElementById("welcomeText").innerText =
+    "Welcome, " + formattedName + " 👋";
+}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Ludo Path Game</title>
+  <style>
+    body {
+      background: #1e1e1e;
+      color: white;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .game {
+      background: #2b2b2b;
+      padding: 20px;
+      border-radius: 12px;
+      width: 340px;
+      text-align: center;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      margin: 15px 0;
+    }
+
+    .cell {
+      width: 55px;
+      height: 55px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+      font-size: 18px;
+    }
+
+    .player {
+      background: #4CAF50;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .dice {
+      font-size: 30px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="game">
+  <h2>🎮 Mini Ludo Game</h2>
+  <p>Reach the last box to win</p>
+
+  <div class="board" id="board"></div>
+
+  <div class="dice" id="dice">🎲</div>
+  <button onclick="rollDice()">Roll Dice</button>
+</div>
+
+<script>
+  const totalSteps = 20;
+  let position = 0;
+
+  const board = document.getElementById("board");
+
+  function drawBoard() {
+    board.innerHTML = "";
+    for (let i = 1; i <= totalSteps; i++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      if (i === position) {
+        cell.classList.add("player");
+        cell.innerText = "🙂";
+      } else {
+        cell.innerText = i;
+      }
+      board.appendChild(cell);
+    }
+  }
+
+  drawBoard();
+
+  function rollDice() {
+    const dice = Math.floor(Math.random() * 6) + 1;
+    document.getElementById("dice").innerText = "🎲 " + dice;
+
+    position += dice;
+    if (position > totalSteps) position = totalSteps;
+
+    drawBoard();
+
+    if (position === totalSteps) {
+      setTimeout(() => {
+        alert("🎉 You won the game!");
+        position = 0;
+        drawBoard();
+      }, 300);
+    }
+  }
+</script>
+
+</body>
+</html>

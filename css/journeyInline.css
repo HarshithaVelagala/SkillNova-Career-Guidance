@@ -1,0 +1,30 @@
+/* Inline journey container styles */
+.journey-inline{
+  max-width: 1200px;
+  margin: 32px auto 0;
+  overflow: hidden;
+  transition: max-height 520ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+  box-shadow: 0 18px 40px rgba(2,6,23,0.06);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0;            /* inner content will have its own padding */
+  opacity: 0;
+  max-height: 0;
+}
+
+/* when visible */
+.journey-inline.open{
+  opacity: 1;
+  padding: 28px;
+  max-height: 2400px; /* large enough to contain content; CSS transition will animate */
+}
+
+/* small: ensure accessible focus outline */
+.journey-inline:focus { outline: 3px solid rgba(47,107,253,0.10); outline-offset:4px; }
+
+/* optional: inner content minor tweak */
+.journey-inline .journey-frame {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}

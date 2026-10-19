@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pathway.css">
+    <link rel="stylesheet" href="css/style-Harshitha.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <section id="journey" class="year-pathway-section">
+<div class="center-mask"></div>
+<div class="element-year-pathway">
+      <div class="text-wrapper">THE JOURNEY</div>
+      <div class="dot dot-1">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" 
+       stroke="white" stroke-width="2" 
+       stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polygon points="16 8 14 14 8 16 10 10 16 8"></polygon>
+  </svg>
+</div>
+
+<div class="dot dot-2">
+  <img src="images/funnel.svg" class="icon">
+</div>
+
+<div class="dot dot-3">
+  <img src="images/trending-up.svg" class="icon">
+</div>
+
+<div class="dot dot-4">
+  <img src="images/target.svg" class="icon">
+</div>
+      <div class="div">4-Year Elimination Pathway</div>
+      <p class="p">
+        A structured progression from exploration to mastery, guided by data-driven psychometric insights.
+      </p>
+      <div class="card card-1">
+  <div class="year">YEAR 1</div>
+  <div class="title">Explore</div>
+  <p>
+    Students sample all 6 clubs through mini-assessments
+    and discovery sessions to find initial interests.
+  </p>
+</div>
+
+<div class="card card-2">
+  <div class="year">YEAR 2</div>
+  <div class="title">Focus</div>
+  <p>
+    Narrow down to 3 clubs based on psychometric scores,
+    performance data, and personal preference.
+  </p>
+</div>
+
+<div class="card card-3">
+  <div class="year">YEAR 3</div>
+  <div class="title">Specialize</div>
+  <p>
+    Deep-dive into 2 clubs with advanced projects,
+    mentorship, and competitive assessments.
+  </p>
+</div>
+
+<div class="card card-4">
+  <div class="year">YEAR 4</div>
+  <div class="title">Master</div>
+  <p>
+    Final specialization in 1 club with capstone projects,
+    certifications, and career readiness reports.
+  </p>
+</div>  
+</div>
+</section>
+
+<section class="joining-late-section" aria-labelledby="joining-late-heading">
+  <div class="joining-inner">
+    <h2 id="joining-late-heading" class="joining-title">
+      Joining Late? <span class="blue">No Problem!</span>
+    </h2>
+    
+    <p class="joining-sub">
+      Students joining after Grade 6 follow an accelerated elimination path with extra support.
+    </p>
+  
+    <div class="joining-divider" aria-hidden="true"></div>
+
+    <div class="joining-cards" role="list">
+      <article class="jl-card" role="listitem" aria-labelledby="join-g7">
+        <h3 id="join-g7" class="jl-card-title">Join in Grade 7</h3>
+
+        <div class="jl-pill" aria-hidden="true">
+          6 clubs → Grade 8: 3 clubs → Grade 9: 1 club
+        </div>
+
+        <p class="jl-desc">
+          Students joining in Grade 7 start with all 6 clubs but follow an accelerated elimination path.
+        </p>
+      </article>
+
+      <article class="jl-card" role="listitem" aria-labelledby="join-g8">
+        <h3 id="join-g8" class="jl-card-title">Join in Grade 8</h3>
+
+        <div class="jl-pill" aria-hidden="true">
+          6 clubs → Grade 9: 2 clubs → focus on 1
+        </div>
+
+        <p class="jl-desc">
+          Late joiners explore all clubs intensively and narrow down quickly with extra mentor support.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+<script>
+  const cards = document.querySelectorAll(".card");
+
+function revealCards() {
+  const triggerBottom = window.innerHeight * 0.8;
+
+  cards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+
+    if (cardTop < triggerBottom) {
+      card.classList.add("show");
+    }
+  });
+}
+window.addEventListener("scroll", revealCards);
+revealCards();
+</script>
+
+<script>
+
+const card = document.querySelectorAll(".jl-card");
+
+function revealCards(){
+const trigger = window.innerHeight * 0.85;
+
+cards.forEach((card,index)=>{
+const cardTop = card.getBoundingClientRect().top;
+
+if(cardTop < trigger){
+
+if(index === 0){
+card.classList.add("show-left");
+}
+
+if(index === 1){
+card.classList.add("show-right");
+}
+
+}
+
+});
+
+}
+
+window.addEventListener("scroll", revealCards);
+revealCards();
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-header">
+    <h1>Admin Panel</h1>
+  </div>
+  <div class="dashboard-container">
+
+    <h2>Add New Club</h2>
+    <input type="text" id="clubName" placeholder="Club Name">
+    <input type="number" id="clubProgress" placeholder="Progress %">
+    <button onclick="addClub()">Add Club</button>
+
+    <h2 style="margin-top:40px;">Existing Clubs</h2>
+    <div id="clubList"></div>
+  </div>
+
+<script>
+function addClub() {
+  const name = document.getElementById("clubName").value;
+  const progress = document.getElementById("clubProgress").value;
+
+  if (!name || !progress) {
+    alert("Fill all fields");
+    return;
+  }
+
+  let clubs = JSON.parse(localStorage.getItem("clubs")) || [];
+
+  clubs.push({
+    name: name,
+    progress: parseInt(progress)
+  });
+
+  localStorage.setItem("clubs", JSON.stringify(clubs));
+
+  alert("Club Added!");
+  loadClubs();
+}
+
+function loadClubs() {
+  const list = document.getElementById("clubList");
+  let clubs = JSON.parse(localStorage.getItem("clubs")) || [];
+
+  list.innerHTML = "";
+
+  clubs.forEach((club, index) => {
+    list.innerHTML += `
+      <div style="margin-bottom:15px;">
+        ${club.name} - ${club.progress}%
+        <button onclick="deleteClub(${index})">Delete</button>
+      </div>
+    `;
+  });
+}
+
+function deleteClub(index) {
+  let clubs = JSON.parse(localStorage.getItem("clubs")) || [];
+  clubs.splice(index, 1);
+  localStorage.setItem("clubs", JSON.stringify(clubs));
+  loadClubs();
+}
+
+loadClubs();
+</script>
+
+</body>
+</html>
